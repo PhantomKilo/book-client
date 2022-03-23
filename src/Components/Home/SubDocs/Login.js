@@ -21,7 +21,7 @@ const Login = () => {
       setError("");
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
-      navigate("/");
+      navigate("/profile");
     } catch {
       setError("Failed to log in");
     }
@@ -54,7 +54,7 @@ const Login = () => {
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2">
-        Already have an account? <Link to="/signup">Signup</Link>
+        Don't have an account? <Link to="/signup">Signup</Link>
       </div>
     </>
   );
