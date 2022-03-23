@@ -5,10 +5,10 @@ import Navbar from "react-bootstrap/Navbar";
 
 const NavBar = () => {
   return (
-    <Navbar className="nav-bar" bg="black" expand="md">
+    <Navbar className="nav-bar" expand="md">
       <Container>
         <Navbar.Brand>
-          <Link to="/" className="nav-link" style={{ textDecoration: "none" }}>
+          <Link to="/*" className="nav-link" style={{ textDecoration: "none" }}>
             Google Book API
           </Link>
         </Navbar.Brand>

@@ -6,6 +6,7 @@ import Container from "react-bootstrap/Container";
 
 import './App.css';
 import NavBar from "./Nav";
+import HomePage from "../Home/Home";
 
 function App() {
 
@@ -15,6 +16,9 @@ function App() {
     <Container className="App">
       <AuthProvider>
         <NavBar />
+        <Routes>
+          <Route exact path="/*" element={<HomePage />} />
+        </Routes>
       </AuthProvider>
     </Container>
   );
