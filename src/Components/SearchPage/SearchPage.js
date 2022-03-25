@@ -12,7 +12,7 @@ const SearchPage = () => {
   const [searchName, setSearchName] = useState("");
   const [searchAuthor, setSearchAuthor] = useState("");
   // const [wishlist, setWishlist] = useState([])
-  // const [selectedBook, setSelectedBook] = useState('')
+  const [selectedBook, setSelectedBook] = useState("");
   const searchUrl = `https://www.googleapis.com/books/v1/volumes?q=${searchName}+inauthor:${searchAuthor}`;
 
   const makeApiCall = async (url) => {
@@ -29,6 +29,8 @@ const SearchPage = () => {
     makeApiCall(searchUrl);
   }, []);
 
+  console.log(selectedBook)
+
   return (
     <Container>
       <Row>
@@ -44,7 +46,7 @@ const SearchPage = () => {
         </Col>
       </Row>
       <Row>
-        <Results book={book} />
+        <Results book={book} setSelectedBook={setSelectedBook} />
       </Row>
     </Container>
   );
