@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -11,10 +10,13 @@ const SearchBar = (props) => {
   const authorRef = useRef();
   const nameRef = useRef();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleTerms = () => {
     setSearchName(nameRef.current.value);
     setSearchAuthor(authorRef.current.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const call = await handleClick();
     return call;
   };
@@ -26,11 +28,11 @@ const SearchBar = (props) => {
         <Form onSubmit={handleSubmit}>
           <Form.Group>
             <Form.Label>Book Title</Form.Label>
-            <Form.Control type="text" ref={nameRef} />
+            <Form.Control type="text" ref={nameRef} onChange={handleTerms} />
           </Form.Group>
           <Form.Group>
             <Form.Label>Book Author</Form.Label>
-            <Form.Control type="text" ref={authorRef} />
+            <Form.Control type="text" ref={authorRef} onChange={handleTerms} />
           </Form.Group>
           <Button type="submit">search</Button>
         </Form>

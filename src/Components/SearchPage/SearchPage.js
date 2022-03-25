@@ -1,9 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
 
 import Description from "./SubDocs/Description";
 import Results from "./SubDocs/Results";
@@ -20,23 +18,33 @@ const SearchPage = () => {
   const makeApiCall = async (url) => {
     const res = await fetch(url);
     const data = await res.json();
-    const results = await setBook(data);
-    return results;
+    return setBook(data.items);
   };
 
-  const handleClick = async () => {
-    const call = await makeApiCall(searchUrl);
-    return call;
+  const handleClick = () => {
+    makeApiCall(searchUrl);
   };
+
+  useEffect(() => {
+    makeApiCall(searchUrl);
+  }, []);
 
   return (
     <Container>
       <Row>
-        <SearchBar
-          setSearchName={setSearchName}
-          setSearchAuthor={setSearchAuthor}
-          handleClick={handleClick}
-        />
+        <Col sm={12} md={6}>
+          <SearchBar
+            setSearchName={setSearchName}
+            setSearchAuthor={setSearchAuthor}
+            handleClick={handleClick}
+          />
+        </Col>
+        <Col sm={12} md={6}>
+          <Description />
+        </Col>
+      </Row>
+      <Row>
+        <Results book={book} />
       </Row>
     </Container>
   );
