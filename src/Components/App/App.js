@@ -44,7 +44,7 @@ function App() {
             path="/my-list"
             element={
               <PrivateRoute>
-                <Wishlist wishlist={wishlist} />
+                <Wishlist wishlist={wishlist} setWishlist={setWishlist} />
               </PrivateRoute>
             }
           />
