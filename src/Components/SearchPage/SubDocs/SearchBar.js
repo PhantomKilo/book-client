@@ -11,8 +11,28 @@ const SearchBar = (props) => {
   const nameRef = useRef();
 
   const handleTerms = () => {
-    setSearchName(nameRef.current.value);
-    setSearchAuthor(authorRef.current.value);
+    if (
+      nameRef.current.value !== undefined &&
+      authorRef.current.value !== undefined
+    ) {
+      setSearchName(nameRef.current.value);
+      setSearchAuthor(authorRef.current.value);
+    } else if (
+      nameRef.current.value === undefined &&
+      authorRef.current.value !== undefined
+    ) {
+      setSearchName("");
+      setSearchAuthor(authorRef.current.value);
+    } else if (
+      nameRef.current.value !== undefined &&
+      authorRef.current.value === undefined
+    ) {
+      setSearchName(nameRef.curent.value);
+      setSearchAuthor("");
+    } else {
+      setSearchName("");
+      setSearchAuthor("");
+    }
   };
 
   const handleSubmit = async (e) => {

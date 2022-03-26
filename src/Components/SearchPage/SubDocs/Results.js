@@ -12,10 +12,9 @@ const Results = (props) => {
   const wishlist = props.wishlist;
 
   const bookList = book.map((item) => {
-
     const addToWishlist = () => {
-        setWishlist([...wishlist, item.volumeInfo])
-    }
+      setWishlist([...wishlist, item.volumeInfo]);
+    };
 
     const handleSelect = () => {
       setSelectedBook(item.volumeInfo);
@@ -39,12 +38,22 @@ const Results = (props) => {
       return (
         <Col sm={12} md={6} lg={4}>
           <Card onClick={handleSelect}>
-            <Card.Img src={img} variant="top" className="img-flui mx-auto" />
-            <Card.Title>{item.volumeInfo.title}</Card.Title>
-            <Card.Body>
-              <Card.Text>{item.volumeInfo.authors[0]}</Card.Text>
-              <Button onClick={addToWishlist}>Add to wishlist</Button>
-            </Card.Body>
+            <Row>
+              <Col>
+                <Card.Img
+                  src={img}
+                //   variant="top"
+                //   className="img-flui mx-auto"
+                />
+              </Col>
+              <Col>
+                <Card.Title>{item.volumeInfo.title}</Card.Title>
+                <Card.Body className="mx-auto">
+                  <Card.Text>{item.volumeInfo.authors}</Card.Text>
+                  <Button onClick={addToWishlist}>Add to wishlist</Button>
+                </Card.Body>
+              </Col>
+            </Row>
           </Card>
         </Col>
       );
