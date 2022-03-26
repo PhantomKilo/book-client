@@ -7,11 +7,12 @@ import Description from "./SubDocs/Description";
 import Results from "./SubDocs/Results";
 import SearchBar from "./SubDocs/SearchBar";
 
-const SearchPage = () => {
+const SearchPage = (props) => {
+  const wishlist = props.wishlist
+  const setWishlist = props.setWishlist
   const [book, setBook] = useState([]);
   const [searchName, setSearchName] = useState("");
   const [searchAuthor, setSearchAuthor] = useState("");
-  // const [wishlist, setWishlist] = useState([])
   const [selectedBook, setSelectedBook] = useState("");
   const searchUrl = `https://www.googleapis.com/books/v1/volumes?q=${searchName}+inauthor:${searchAuthor}`;
 
@@ -29,7 +30,7 @@ const SearchPage = () => {
     makeApiCall(searchUrl);
   }, []);
 
-  console.log(selectedBook)
+  console.log(selectedBook);
 
   return (
     <Container>
@@ -42,11 +43,16 @@ const SearchPage = () => {
           />
         </Col>
         <Col sm={12} md={6}>
-          <Description />
+          <Description selectedBook={selectedBook} />
         </Col>
       </Row>
       <Row>
-        <Results book={book} setSelectedBook={setSelectedBook} />
+        <Results
+          book={book}
+          setSelectedBook={setSelectedBook}
+          setWishlist={setWishlist}
+          wishlist={wishlist}
+        />
       </Row>
     </Container>
   );

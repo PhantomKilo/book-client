@@ -11,6 +11,7 @@ const SignUp = () => {
   const emailRef = useRef()
   const passwordRef = useRef()
   const passwordConfirmRef = useRef() 
+
   const { signup } = useAuth()
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -29,7 +30,7 @@ const SignUp = () => {
         await signup(emailRef.current.value, passwordRef.current.value)
         navigate('/')
     } catch {
-        setError('Faiied to create account')
+        setError('Failed to create account')
     }
 
     setLoading(false)
@@ -47,7 +48,7 @@ const SignUp = () => {
                 <Form.Label>Email</Form.Label>
                 <Form.Control type="email" ref={emailRef} required/>
               </Form.Group>
-              <Form.Group id="passwrod"> 
+              <Form.Group id="password"> 
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" ref={passwordRef} required/>
               </Form.Group>

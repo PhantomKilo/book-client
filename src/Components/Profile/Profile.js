@@ -5,8 +5,6 @@ import Alert from "react-bootstrap/Alert";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Contexts/AuthContext";
 
-import UpdateProfile from "./SubDocs/UpdateProfile";
-
 const Profile = () => {
   const [error, setError] = useState("");
   const { currentUser, logout } = useAuth();

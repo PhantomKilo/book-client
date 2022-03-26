@@ -1,18 +1,25 @@
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import Button from "react-bootstrap/Button";
 
-import "../SearchPage.css"
+import "../SearchPage.css";
 
 const Results = (props) => {
   const book = props.book;
-  const setSelectedBook = props.setSelectedBook
+  const setSelectedBook = props.setSelectedBook;
+  const setWishlist = props.setWishlist;
+  const wishlist = props.wishlist;
 
   const bookList = book.map((item) => {
 
-    const handleSelect = () => {
-        setSelectedBook(item.volumeInfo)
+    const addToWishlist = () => {
+        setWishlist([...wishlist, item.volumeInfo])
     }
+
+    const handleSelect = () => {
+      setSelectedBook(item.volumeInfo);
+    };
 
     let img;
 
@@ -31,11 +38,12 @@ const Results = (props) => {
     } else {
       return (
         <Col sm={12} md={6} lg={4}>
-          <Card onClick={handleSelect} >
+          <Card onClick={handleSelect}>
             <Card.Img src={img} variant="top" className="img-flui mx-auto" />
             <Card.Title>{item.volumeInfo.title}</Card.Title>
             <Card.Body>
               <Card.Text>{item.volumeInfo.authors[0]}</Card.Text>
+              <Button onClick={addToWishlist}>Add to wishlist</Button>
             </Card.Body>
           </Card>
         </Col>

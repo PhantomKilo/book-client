@@ -21,6 +21,9 @@ const NavBar = () => {
             <Link className="nav-link" to="/my-list">
               My List
             </Link>
+            <Link className="nav-link" to="/profile">
+              Profile
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

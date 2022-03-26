@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { AuthProvider } from "../../Contexts/AuthContext";
 
@@ -10,8 +10,11 @@ import HomePage from "../Home/Home";
 import Profile from "../Profile/Profile";
 import SearchPage from "../SearchPage/SearchPage";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Wishlist from "../Wishlist/Wishlist";
 
 function App() {
+  const [wishlist, setWishlist] = useState([]);
+
   return (
     <Container className="App">
       <AuthProvider>
@@ -32,7 +35,16 @@ function App() {
             path="/search-page"
             element={
               <PrivateRoute>
-                <SearchPage />
+                <SearchPage wishlist={wishlist} setWishlist={setWishlist} />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            exact
+            path="/my-list"
+            element={
+              <PrivateRoute>
+                <Wishlist wishlist={wishlist} />
               </PrivateRoute>
             }
           />
