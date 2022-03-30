@@ -14,6 +14,7 @@ import Wishlist from "../Wishlist/Wishlist";
 
 function App() {
   const [wishlist, setWishlist] = useState([]);
+  const [profile, setProfile] = useState({})
 
   return (
     <Container className="App">
@@ -23,7 +24,7 @@ function App() {
           <Route exact path="/*" element={<HomePage />} />
           <Route
             exact
-            path="/profile"
+            path="/profile/*"
             element={
               <PrivateRoute>
                 <Profile />

@@ -1,44 +1,17 @@
-import { useState } from "react";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import Alert from "react-bootstrap/Alert";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../Contexts/AuthContext";
+import { Routes, Route } from "react-router-dom";
+import Container from "react-bootstrap/Container";
+
+import ProfilePage from "./SubDocs/ProfilePage";
+import UpdateProfile from "./SubDocs/UpdateProfile";
 
 const Profile = () => {
-  const [error, setError] = useState("");
-  const { currentUser, logout } = useAuth();
-  const navigate = useNavigate();
-
-  const handleLogout = async () => {
-    setError("");
-
-    try {
-      await logout();
-      navigate("/");
-    } catch {
-      setError("Failed to logout");
-    }
-  };
-
   return (
-    <>
-      <Card>
-        <Card.Body>
-          <h2 className="text-center mb-4">Profile</h2>
-          {error && <Alert variant="danger">{error}</Alert>}
-          <strong>Email: </strong> {currentUser.email}
-          <Link to="/update-profile" className="btn btn-primary w-100 mt-3">
-            Update Profile
-          </Link>
-        </Card.Body>
-      </Card>
-      <div className="w-100 text-center mt-2">
-        <Button variant="link" onClick={handleLogout}>
-          Log Out
-        </Button>
-      </div>
-    </>
+    <Container>
+      <Routes>
+        <Route exact path="/*" element={<ProfilePage />} />
+        <Route exact path="/update-profile" element={<UpdateProfile />} />
+      </Routes>
+    </Container>
   );
 };
 
